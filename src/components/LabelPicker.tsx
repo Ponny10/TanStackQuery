@@ -1,11 +1,5 @@
 import { useQuery } from '@tanstack/react-query';
-
-const getLabels = async () => {
-    const resp = await fetch('https://api.github.com/repositories/10270250/labels').then((r) =>
-        r.json(),
-    );
-    return resp;
-};
+import { getLabels } from '../store/actions/getLabels.actions';
 
 export const LabelPicker = () => {
     const labelsQuery = useQuery({
@@ -17,12 +11,15 @@ export const LabelPicker = () => {
         return <h1>Obteniendo datos, espere un momento...</h1>;
     }
     return (
-        <>
-            <span
-                className="px-2 py-1 rounded-full text-xs font-semibold hover:bg-slate-800 cursor-pointer"
-                style={{ border: `1px solid #ffccd3`, color: '#ffccd3' }}>
-                Primary
-            </span>
-        </>
+        <div className="flex flex-wrap gap-2 justify-center">
+            {labelsQuery.data?.map((label) => (
+                <span
+                    key={label.id}
+                    className="px-2 py-1 rounded-full text-xs font-semibold hover:bg-slate-800 cursor-pointer"
+                    style={{ border: `1px solid #${label.color}`, color: 'white' }}>
+                    {label.name}
+                </span>
+            ))}
+        </div>
     );
 };

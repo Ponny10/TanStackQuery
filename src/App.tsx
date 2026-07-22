@@ -1,11 +1,12 @@
-import './App.css';
+import { Outlet } from 'react-router';
 
-const App = () => {
+export const App = () => {
     return (
-        <>
-            <h1>Hola mundo</h1>
-        </>
+        <div className="container m-auto max-w-7xl mt-3">
+            <h1>
+                Git Issues <small>Seguimiento de problemas</small>
+            </h1>
+            <Outlet />
+        </div>
     );
 };
-
-export default App;
