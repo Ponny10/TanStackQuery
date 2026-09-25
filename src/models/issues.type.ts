@@ -99,7 +99,7 @@ export interface Reactions {
     eyes: number;
 }
 
-export type State = 'open' | 'close';
+export type State = 'all' | 'open' | 'closed';
 
 export interface SubIssuesSummary {
     total: number;
