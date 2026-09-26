@@ -51,6 +51,7 @@ export const IssueItem = ({ issue }: IssueItemProps) => {
                 <div className="flex flex-wrap gap-2">
                     {issue.labels.map((label) => (
                         <p
+                            key={label.id}
                             className={`text-xs p-1 rounded-md border`}
                             style={{ borderColor: `#${label.color}` }}>
                             {label.name}
