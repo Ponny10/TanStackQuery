@@ -9,11 +9,11 @@ export const ListView = () => {
     const [state, setState] = useState<State>('all');
     const [selectedLabels, setSelectedLabels] = useState<string[]>([]);
 
-    const { issueQuery } = useIssues({ state, selectedLabels });
+    const { issueQuery, currentPage, nextPage, prevPage } = useIssues({ state, selectedLabels });
 
     const toggleSelectedLabels = (label: string) => {
         if (selectedLabels.includes(label)) {
-            setSelectedLabels((labels) => labels.filter((currentLabel) => currentLabel !== label));
+            setSelectedLabels(selectedLabels.filter((currentLabel) => currentLabel !== label));
         } else {
             setSelectedLabels([...selectedLabels, label]);
         }
@@ -25,11 +25,30 @@ export const ListView = () => {
                 {issueQuery.isLoading ? (
                     <LoadingSpinner />
                 ) : (
-                    <IssueList
-                        issues={issueQuery.data ?? []}
-                        onChangeState={setState}
-                        state={state}
-                    />
+                    <>
+                        <IssueList
+                            issues={issueQuery.data ?? []}
+                            onChangeState={setState}
+                            state={state}
+                        />
+                        {issueQuery.data?.length !== 0 ? (
+                            <div className="flex justify-between items-center mt-2">
+                                <button
+                                    onClick={prevPage}
+                                    className="p-2 bg-blue-500 rounded-md hover:bg-blue-700 transition-all">
+                                    Anteriores
+                                </button>
+                                <p>{currentPage}</p>
+                                <button
+                                    onClick={nextPage}
+                                    className="p-2 bg-blue-500 rounded-md hover:bg-blue-700 transition-all">
+                                    Siguiente
+                                </button>
+                            </div>
+                        ) : (
+                            <p>No existen issues</p>
+                        )}
+                    </>
                 )}
             </div>
 
