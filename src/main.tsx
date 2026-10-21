@@ -1,20 +1,15 @@
-import { StrictMode } from 'react';
+import React from 'react';
+import ReactDOM from 'react-dom/client';
 
-import { createRoot } from 'react-dom/client';
-import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
-import { ReactQueryDevtools } from '@tanstack/react-query-devtools';
-
-import App from './App.tsx';
+import { RouterProvider } from 'react-router';
+import { router } from './router/router.tsx';
 
 import './index.css';
 
-const queryCient = new QueryClient();
-
-createRoot(document.getElementById('root')!).render(
-    <StrictMode>
-        <QueryClientProvider client={queryCient}>
-            <ReactQueryDevtools client={queryCient} />
-            <App />
-        </QueryClientProvider>
-    </StrictMode>,
+ReactDOM.createRoot(document.getElementById('root')!).render(
+    <React.StrictMode>
+        <main className="dark text-foreground bg-background">
+            <RouterProvider router={router} />
+        </main>
+    </React.StrictMode>,
 );
