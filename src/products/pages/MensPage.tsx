@@ -1,12 +1,21 @@
-import { ProductList } from ".."
+import { ProductList } from '..';
+import { useProducts } from '../hooks/useProdutcs';
 
 export const MensPage = () => {
-  return (
-    <div className="flex-col">
-      <h1 className="text-2xl font-bold">Productos para hombres</h1>
+    const { isLoading, products } = useProducts({ filterKey: `men's clothing` });
 
-      <ProductList />
+    return (
+        <div className="flex-col">
+            <h1 className="text-2xl font-bold">Productos para hombres</h1>
+            {isLoading && (
+                <p className="flex justify-center items-center text-gray-700">
+                    Obteniendo productos
+                </p>
+            )}
 
-    </div>
-  )
-}
+            <ProductList
+                products={products.filter((product) => product.category === `men's clothing`)}
+            />
+        </div>
+    );
+};

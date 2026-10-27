@@ -1,13 +1,20 @@
-import { ProductList } from ".."
-
+import { ProductList } from '..';
+import { useProducts } from '../hooks/useProdutcs';
 
 export const CompleteListPage = () => {
-  return (
-    <div className="flex-col">
-      <h1 className="text-2xl font-bold">Todos los productos</h1>
+    const { isLoading, products } = useProducts({});
 
-      <ProductList />
+    return (
+        <div className="flex-col">
+            <h1 className="text-2xl font-bold">Todos los productos</h1>
 
-    </div>
-  )
-}
+            {isLoading && (
+                <p className="flex justify-center items-center text-gray-700">
+                    Obteniendo productos
+                </p>
+            )}
+
+            <ProductList products={products} />
+        </div>
+    );
+};

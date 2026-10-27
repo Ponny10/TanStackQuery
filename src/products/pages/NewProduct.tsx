@@ -1,11 +1,12 @@
 export const NewProduct = () => {
     return (
-        <div className="w-full flex-col">
+        <div className="w-full flex-col bg-amber-200">
             <h1 className="text-2xl font-bold">Nuevo producto</h1>
 
+            <input className="mt-2" type="text" title="Titulo del producto" />
             <form className="w-full">
-                <div className="flex justify-around items-center">
-                    <div className="flex-col w-[500px]">
+                <div className="flex justify-around items-center bg-yellow-600">
+                    <div className="flex-col w-[500px] text-blue-800">
                         <input className="mt-2" type="text" title="Titulo del producto" />
                         <input className="mt-2" type="number" title="Precio del producto" />
                         <input className="mt-2" type="url" title="Url del producto" />
